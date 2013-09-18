@@ -1,0 +1,23 @@
+﻿<Window x:Class="DataGridWithMultipleDetailGrids.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="517">
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding companies}" 
+                  x:Name="exampleGrid" Margin="10,10,10,10" VerticalAlignment="Stretch" 
+                  HorizontalAlignment="Stretch" 
+                  RowDetailsVisibilityChanged="ExampleGrid_OnRowDetailsVisibilityChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="true" Binding="{Binding CompanyName}" Header="Company Name"/>
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <StackPanel Name="DetailsPanel">
+                        <DataGrid Name="innerGrid" Margin="10,10,10,10" BorderThickness="5" />
+                        <DataGrid Name="staffGrid" Margin="10,10,10,10" BorderThickness="5"/>
+                    </StackPanel>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
+    </Grid>
+</Window>
